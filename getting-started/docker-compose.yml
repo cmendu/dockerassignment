@@ -3,11 +3,11 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - square_mertic-mysql-data:/var/lib/mysql
+      - math-calc-mysql-data:/var/lib/mysql
       - .docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: square_mertics
+      MYSQL_DATABASE: math-calcs
 
 volumes:
-  square_mertic-mysql-data:
+  math-calc-mysql-data:
