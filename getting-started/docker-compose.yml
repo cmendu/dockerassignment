@@ -1,0 +1,12 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - square_mertic-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: square_mertics
+
+volumes:
+  square_mertic-mysql-data:
