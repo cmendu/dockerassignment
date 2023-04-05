@@ -3,6 +3,10 @@ services:
    build: ./square
    ports: 
      - "5000:5000"
+  cube:
+   build: ./cube
+   ports: 
+     - "5001:5001"
 
   mysql:
     image: mysql:8.0

@@ -7,7 +7,7 @@ app = Flask(__name__)
 def square():
     i = int(request.args.get('i'))
     square = i*i
-    return jsonify('square':square)
+    return jsonify({'result': square})
     
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
