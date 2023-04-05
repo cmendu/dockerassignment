@@ -1,10 +1,14 @@
-# Python program to calculate cube of given number
- 
-# take input a number from user
-num = int(input("Enter an any number: "))
- 
-# calculate cube using * operator
-cb = num*num
- 
-# display result
-print("Square of {0} is {1} ".format(num, cb))
+from flask import Flask, jsonify
+  
+app = Flask(__name__)
+  
+# Pass the required route to the decorator.
+@app.route("/square")
+def square():
+    i = int(request.args.get('i'))
+    square = i*i
+    return jsonify('square':square)
+    
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
+    
