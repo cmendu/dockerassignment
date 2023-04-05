@@ -1,0 +1,17 @@
+services:
+  square:
+   build: ./square
+   ports: 
+     - "5000:5000"
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - ./MathCalc-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_USER: docker
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: MathCalc
+
+volumes:
+  MathCalc-mysql-data:
