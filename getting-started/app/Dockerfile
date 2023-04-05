@@ -1,16 +1,33 @@
+# start by pulling the python image
 FROM python:latest
-WORKDIR /app/src
 
-#to COPY the remote file at working directory in container
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+ 
 
-COPY . .
+# copy the requirements file into the image
+COPY ./requirement.txt /root/dockerImage/requirement.txt
 
-# Now the structure looks like this '/usr/app/src/test.py'
+ 
 
+# switch working directory
+WORKDIR /root/dockerImage
 
-#CMD instruction should be used to run the software
-#contained by your image, along with any arguments.
+ 
 
-CMD [ "python", "./Math.py"]
+# install the dependencies and packages in the requirements file
+RUN pip install -r requirement.txt
+
+ 
+
+# Expose the port
+EXPOSE 5000
+# copy every content from the local file to the image
+COPY . /root/dockerImage/requirement.txt
+
+ 
+
+# configure the container to run in an executed manner
+ENTRYPOINT [ "python" ]
+
+ 
+
+CMD ["MathCalc.py" ]
