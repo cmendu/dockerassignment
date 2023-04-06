@@ -1,5 +1,32 @@
 FROM python:latest
-COPY requirement.txt /requirement.txt
-RUN pip install -r /requirement.txt
-COPY cube.py /cube.py
-CMD ["python", "/cube.py"]
+
+
+
+# copy the requirements file into the image
+COPY ./requirement.txt /root/dockerImage/requirement.txt
+
+
+
+# switch working directory
+WORKDIR /root/dockerImage
+
+
+
+# install the dependencies and packages in the requirements file
+RUN pip install -r requirement.txt
+
+
+
+# Expose the port
+EXPOSE 5000
+# copy every content from the local file to the image
+COPY . /root/dockerImage/
+
+
+
+# configure the container to run in an executed manner
+ENTRYPOINT [ "python" ]
+
+
+
+CMD ["cube.py" ]

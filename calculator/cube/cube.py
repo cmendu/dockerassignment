@@ -1,30 +1,19 @@
-from flask import Flask, jsonify
-import mysql.connector;
+from flask import Flask, jsonify, request
+import mysql.connector
   
 app = Flask(__name__)
   
 # Pass the required route to the decorator.
-@app.route("/cube")
-def cube():
-    i = int(request.args.get('i'))
-    cube = i*i*i
+@app.route('/cube/<int:num>', methods=['GET'])
+def cube(num):
     
-    mydb = mysql.connector.connect(
-    host="localhost",
-    user="docker",
-    password="secret",
-    database="MathCalc"
-        )
-    mycursor = mydb.cursor()
-
-    mycursor.execute("INSERT INTO cube_metric (cube_metric) VALUES (?)",(cube))
-
-    mydb.commit()
+    cube = num**3
+   
 
     
     return jsonify({'result': cube})
     
     
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0')
     
