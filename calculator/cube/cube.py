@@ -10,16 +10,14 @@ def cube():
     cube = i*i*i
     
     mydb = mysql.connector.connect(
-    host="172.19.0.3",
+    host="localhost",
     user="docker",
     password="secret",
     database="MathCalc"
         )
     mycursor = mydb.cursor()
 
-    sql = "INSERT INTO cube_metric (cube_metric) VALUES (%s)"
-    val = (cube)
-    mycursor.execute(sql, val)
+    mycursor.execute("INSERT INTO cube_metric (cube_metric) VALUES (?)",(cube))
 
     mydb.commit()
 
